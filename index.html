@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will Shakshi Give Me Kissu?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #e8e8e8;
+      font-family: 'Press Start 2P', cursive;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #ff7b6f;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #ff7b6f;
+      padding-bottom: 10px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      background-color: #ff998f;
+      color: #3f4344;
+      font-family: 'Press Start 2P', cursive;
+      border: none;
+      padding: 15px 30px;
+      font-size: 0.8rem;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    .button:hover {
+      background-color: #ff7b6f;
+      transform: scale(1.05);
+    }
+
+    .effect {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      animation: float 2s ease forwards;
+      pointer-events: none;
+      display: inline-block;
+    }
+
+    @keyframes float {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(0.8);
+      }
+    }
+
+    .popup {
+      display: none;
+      background-color: #e8e8e8;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      font-size: 1rem;
+      color: #3f4344;
+    }
+
+    .popup-button {
+      background-color: #ff998f;
+      color: #3f4344;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Press Start 2P', cursive;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .popup-button:hover {
+      background-color: #ff7b6f;
+      transform: scale(1.05);
+    }
+
+    .placeholder-image {
+      width: 400px;
+      height: 200px;
+      border-radius: 14px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <h1>Will Shakshi Give Me Kissu?</h1>
+  <div class="button-container">
+    <button class="button yes-button">Yes</button>
+    <button class="button no-button">No</button>
+  </div>
+  <img class="placeholder-image" src="PIC/image.png" alt="Placeholder Image">
+
+  <audio id="yesSound" src="SOUND/Yay (Sound effect) LUCAS ARPON TV.mp3"></audio>
+  <audio id="noSound" src="SOUND/HE-HELL NAH.mp3"></audio>
+
+  <div class="popup" id="popup">
+    <p>No option provided such as NO! Please proceed with YES
+    </p>
+    <button class="popup-button" id="popupButton">Yes</button>
+  </div>
+
+  <script>
+    const yesButton = document.querySelector('.yes-button');
+    const noButton = document.querySelector('.no-button');
+    const yesSound = document.getElementById('yesSound');
+    const noSound = document.getElementById('noSound');
+    const popup = document.getElementById('popup');
+    const popupButton = document.getElementById('popupButton');
+
+    // Create a floating heart effect
+    const createEffect = (button, imageSrc) => {
+      const effect = document.createElement('img');
+      effect.classList.add('effect');
+      effect.src = imageSrc;
+      effect.style.left = `${Math.random() * 100}%`;
+      effect.style.top = `${Math.random() * 100}%`;
+      effect.style.margin = 0;
+      effect.style.border = 'none';
+      effect.style.boxShadow = 'none';
+      effect.style.padding = 0;
+
+      button.appendChild(effect);
+
+      setTimeout(() => {
+        effect.remove();
+      }, 2000);
+    };
+
+    // Add hover effect for Yes button
+    yesButton.addEventListener('mouseenter', () => {
+      yesSound.play();
+      noSound.pause(); // Stop No sound when Yes is hovered
+      const interval = setInterval(() => {
+        createEffect(yesButton, 'PIC/1.png');
+      }, 200);
+
+      yesButton.addEventListener('mouseleave', () => {
+        clearInterval(interval);
+      });
+    });
+
+    // Add hover effect for No button
+    noButton.addEventListener('mouseenter', () => {
+      noSound.play();
+      yesSound.pause(); // Stop Yes sound when No is hovered
+      const interval = setInterval(() => {
+        createEffect(noButton, 'PIC/2.png');
+      }, 200);
+
+      noButton.addEventListener('mouseleave', () => {
+        clearInterval(interval);
+      });
+    });
+
+    // Display popup when No button is clicked
+    noButton.addEventListener('click', () => {
+      popup.style.display = 'block';  // Show popup
+    });
+
+    // Add click event to Yes button to redirect to 2.html
+    yesButton.addEventListener('click', () => {
+      window.location.href = '2.html';  // Redirect to 2.html when the Yes button is clicked
+    });
+
+    // Add click event to popup's Yes button
+    popupButton.addEventListener('click', () => {
+      window.location.href = '2.html';  // Redirect to 2.html when Yes is clicked in the popup
+    });
+  </script>
+</body>
+</html>

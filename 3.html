@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select the Date</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #e8e8e8; /* Matching background color */
+      font-family: 'Press Start 2P', cursive;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #ff7b6f; /* Matching text color */
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #ff7b6f; /* Add underline below the text */
+      padding-bottom: 10px; /* Space between text and underline */
+    }
+
+    .button {
+      background-color: #ff998f; /* Matching button color */
+      color: #3f4344;
+      font-family: 'Press Start 2P', cursive;
+      border: none;
+      padding: 15px 30px;
+      font-size: 0.8rem;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      position: relative;
+      margin-top: 30px; /* Move button down */
+    }
+
+    .button:hover {
+      background-color: #ff7b6f; /* Hover color to match */
+      transform: scale(1.05);
+    }
+
+    input[type="date"] {
+      font-family: 'Press Start 2P', cursive; /* Pixelated font */
+      font-size: 1rem;
+      color: #3f4344; /* Dark gray color */
+      background-color: #e8e8e8;
+      border: 2px solid #ff7b6f;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 20px;
+      width: 220px; /* Set the width of the date picker */
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>SELECT THE DATE FOR THIS KISSU DATE</h1>
+
+  <!-- Date Selector (Calendar Popup) -->
+  <input type="date" id="date-selector">
+
+  <button class="button" id="submit-btn">SUBMIT</button>
+
+  <script>
+    // Get the Submit button element
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Add click event listener to redirect to 4.html
+    submitBtn.addEventListener('click', () => {
+      window.location.href = '4.html'; // Redirect to 4.html when the button is clicked
+    });
+  </script>
+</body>
+</html>
